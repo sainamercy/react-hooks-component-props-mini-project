@@ -1,12 +1,26 @@
 import React from "react";
 
-function Article({ title, date = "January 1, 1970", preview }) {
+function minutesToRead(minutes) {
+  if (minutes > 0 && minutes < 30) {
+    const times = minutes / 5;
+    return "☕️".repeat(times);
+  } else if (minutes >= 30) {
+    const times = minutes / 10;
+    return "🍱".repeat(times);
+  } else {
+    return "";
+  }
+}
+function Article({ title, date = "January 1, 1970", preview, minutes }) {
   return (
     <article>
       <h3>{title}</h3>
-      <small>{date}</small>
+      <small>
+        {date} {minutesToRead(minutes)}
+        {minutes} min read
+      </small>
       <p>{preview}</p>
     </article>
   );
 }
-export default Article
+export default Article;
